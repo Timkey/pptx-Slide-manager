@@ -1,0 +1,8 @@
+# Add your pip dependencies here, one per line
+# Example:
+# requests==2.31.0
+# flask==3.0.0
+
+# Presentation merging
+python-pptx>=0.6.21
+Pillow>=9.0.0
