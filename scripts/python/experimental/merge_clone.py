@@ -18,7 +18,7 @@ def main():
     p.add_argument("inputs", nargs="+", help="Input PPTX files to merge")
     args = p.parse_args()
 
-    root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
     merged_dir = os.path.join(root, "assets", "slides", "merged")
     os.makedirs(merged_dir, exist_ok=True)
     output_path = os.path.join(merged_dir, args.output)

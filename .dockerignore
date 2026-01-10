@@ -1,0 +1,65 @@
+# .dockerignore
+# Exclude files from Docker build context to speed up builds
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+src/.venv/
+venv/
+ENV/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Docker
+.dockerignore
+Dockerfile
+docker-compose.yml
+docker-*.sh
+
+# Documentation (can be added back if needed)
+*.md
+!src/README.md
+
+# Test outputs (keep templates but exclude generated files)
+assets/output/*
+assets/pdfs/merged/*
+assets/slides/merged/*
+
+# Logs
+*.log

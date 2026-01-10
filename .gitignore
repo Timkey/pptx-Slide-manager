@@ -1,1 +1,12 @@
+# Virtual environments
 /src/.venv
+.venv/
+venv/
+ENV/
+
+# Old src directory  
+/src/
+
+# SMB files
+*.smb
+.smb*

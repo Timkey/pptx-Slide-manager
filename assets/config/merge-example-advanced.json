@@ -1,0 +1,17 @@
+{
+  "output": "custom-merge.pptx",
+  "parts": [
+    {
+      "file": "slides/templates/test1.pptx",
+      "slides": [0]
+    },
+    {
+      "file": "slides/templates/test2.pptx",
+      "slides": [0]
+    },
+    {
+      "file": "slides/templates/test1.pptx",
+      "slides": "all"
+    }
+  ]
+}

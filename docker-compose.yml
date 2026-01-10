@@ -1,0 +1,48 @@
+services:
+  immerculate:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: immerculate-conception:latest
+    container_name: immerculate-app
+    
+    # Mount local directories for input/output
+    volumes:
+      - ./assets:/app/assets
+      - ./scripts:/app/scripts
+    
+    # Working directory inside container
+    working_dir: /app
+    
+    # Keep container running for interactive use
+    stdin_open: true
+    tty: true
+    
+    # Environment variables (can be customized)
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PYTHONDONTWRITEBYTECODE=1
+    
+    # Optional: Set user to match host user (prevents permission issues)
+    # Uncomment and adjust UID/GID to match your system (run `id -u` and `id -g`)
+    # user: "1000:1000"
+
+# NOTE: Usage examples:
+#
+# 1. Build and start container:
+#    docker-compose up -d
+#
+# 2. Execute a script inside the running container:
+#    docker-compose exec immerculate merge_pdfs.sh assets/output/merged.pdf assets/pdfs/blocks/file1.pdf assets/pdfs/blocks/file2.pdf
+#
+# 3. Run Python script:
+#    docker-compose exec immerculate python scripts/python/merge_pptx.py assets/slides/merged/output.pptx assets/slides/blocks/input1.pptx
+#
+# 4. Interactive shell:
+#    docker-compose exec immerculate bash
+#
+# 5. One-off command (without starting persistent container):
+#    docker-compose run --rm immerculate merge_pdfs.sh output.pdf input1.pdf input2.pdf
+#
+# 6. Stop container:
+#    docker-compose down

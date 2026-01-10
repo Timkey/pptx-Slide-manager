@@ -14,11 +14,11 @@ import shlex
 import subprocess
 import sys
 
-ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 SCRIPTS = {
-    "1": os.path.join(ROOT, "src", "merge_template.py"),
-    "2": os.path.join(ROOT, "src", "merge_images.py"),
-    "3": os.path.join(ROOT, "src", "merge_clone.py"),
+    "1": os.path.join(ROOT, "scripts", "python", "merge_template.py"),
+    "2": os.path.join(ROOT, "scripts", "python", "merge_images.py"),
+    "3": os.path.join(ROOT, "scripts", "python", "merge_clone.py"),
 }
 
 

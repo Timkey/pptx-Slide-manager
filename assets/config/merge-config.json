@@ -1,0 +1,21 @@
+{
+  "output": "merged-pptx-001.pptx",
+  "parts": [
+    {
+      "file": "slides/templates/test1.pptx",
+      "slides": "all"
+    },
+    {
+      "file": "slides/templates/test2.pptx",
+      "slides": "all"
+    },
+    {
+      "file": "slides/templates/test1.pptx",
+      "slides": "all"
+    },
+    {
+      "file": "slides/templates/test2.pptx",
+      "slides": "all"
+    }
+  ]
+}

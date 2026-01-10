@@ -1,0 +1,7 @@
+{
+  "output": "simple-merge.pptx",
+  "parts": [
+    "slides/templates/test1.pptx",
+    "slides/templates/test2.pptx"
+  ]
+}
