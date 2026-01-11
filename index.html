@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPTX Slide Manager - Merge & Analyze PowerPoint Presentations</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+        
+        .hero .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 15px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: white;
+            color: #667eea;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .btn-secondary {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+        
+        .feature-card p {
+            color: #666;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 50px;
+        }
+        
+        .demo-section {
+            background: #f8f9fa;
+        }
+        
+        .demo-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .demo-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .demo-card-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+        
+        .demo-card-body {
+            padding: 25px;
+        }
+        
+        .demo-card-body p {
+            margin-bottom: 20px;
+            color: #666;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2em;
+            font-weight: 700;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            font-size: 0.9em;
+            color: #666;
+        }
+        
+        .code-section {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        .code-section code {
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+        }
+        
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            
+            .hero p {
+                font-size: 1.1em;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>🎯 PPTX Slide Manager</h1>
+        <p>Powerful Python tools for merging, analyzing, and managing PowerPoint presentations</p>
+        <div class="buttons">
+            <a href="https://github.com/Timkey/pptx-Slide-manager" class="btn btn-primary">View on GitHub</a>
+            <a href="assets/analysis/masses/visualization.html" class="btn btn-secondary">Live Demo</a>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2 class="section-title">Key Features</h2>
+        <p class="section-subtitle">Everything you need to work with PowerPoint presentations at scale</p>
+        
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🔄</div>
+                <h3>Smart PPTX Merging</h3>
+                <p>Merge multiple PowerPoint files with advanced theme resolution, layout matching, and selective slide inclusion via JSON configuration.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Font Analysis</h3>
+                <p>Deep analysis of font attributes with theme color resolution, master style extraction, and outlier detection across presentations.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>Interactive Visualizations</h3>
+                <p>Beautiful HTML reports with charts, search functionality, and color swatches - no server required, works offline.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">⚙️</div>
+                <h3>JSON Configuration</h3>
+                <p>Control merge operations with simple JSON configs supporting slide selection, file ordering, and path resolution.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <h3>Validation Tools</h3>
+                <p>Comprehensive validation scripts to verify merged outputs, check consistency, and ensure quality across presentations.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🐳</div>
+                <h3>Docker Ready</h3>
+                <p>Containerized environment with Docker and docker-compose for consistent execution across platforms.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <div class="container">
+            <h2 class="section-title">Live Analysis Reports</h2>
+            <p class="section-subtitle">Explore real-world analysis results from church presentation files</p>
+            
+            <div class="demo-cards">
+                <div class="demo-card">
+                    <div class="demo-card-header">📖 Masses Analysis</div>
+                    <div class="demo-card-body">
+                        <p>Analysis of 28 Mass presentation files with comprehensive font attribute tracking and outlier detection.</p>
+                        
+                        <div class="stats">
+                            <div class="stat">
+                                <div class="stat-value">28</div>
+                                <div class="stat-label">Files</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">26.9K</div>
+                                <div class="stat-label">Text Runs</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">3K</div>
+                                <div class="stat-label">Outliers</div>
+                            </div>
+                        </div>
+                        
+                        <a href="assets/analysis/masses/visualization.html" class="btn btn-primary" style="width: 100%; text-align: center;">View Interactive Report</a>
+                    </div>
+                </div>
+                
+                <div class="demo-card">
+                    <div class="demo-card-header">🎵 Music Analysis</div>
+                    <div class="demo-card-body">
+                        <p>Analysis of 12 music presentation files showing font consistency patterns and color usage.</p>
+                        
+                        <div class="stats">
+                            <div class="stat">
+                                <div class="stat-value">12</div>
+                                <div class="stat-label">Files</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">945</div>
+                                <div class="stat-label">Text Runs</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">174</div>
+                                <div class="stat-label">Outliers</div>
+                            </div>
+                        </div>
+                        
+                        <a href="assets/analysis/music/visualization.html" class="btn btn-primary" style="width: 100%; text-align: center;">View Interactive Report</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2 class="section-title">Quick Start</h2>
+        <p class="section-subtitle">Get up and running in minutes</p>
+        
+        <div class="code-section">
+            <code># Clone the repository<br>
+git clone https://github.com/Timkey/pptx-Slide-manager.git<br>
+cd pptx-Slide-manager<br>
+<br>
+# Install dependencies<br>
+pip install -r src/requirements.txt<br>
+<br>
+# Merge presentations with JSON config<br>
+python scripts/python/merge_pptx.py --config assets/config/merge-config.json<br>
+<br>
+# Analyze font attributes<br>
+python scripts/python/analyze_pptx_fonts.py /path/to/presentations --output assets/analysis/output<br>
+<br>
+# Generate interactive visualization<br>
+python scripts/python/generate_analysis_viz.py assets/analysis/output</code>
+        </div>
+        
+        <h3 style="margin-top: 40px; margin-bottom: 20px; font-size: 1.8em;">Main Scripts</h3>
+        
+        <div class="features">
+            <div class="feature-card">
+                <h3>merge_pptx.py</h3>
+                <p><strong>Production:</strong> Merge multiple PPTX files with theme resolution, layout matching, and JSON configuration support.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>analyze_pptx_fonts.py</h3>
+                <p><strong>Analysis:</strong> Extract font attributes with deep theme resolution and outlier detection across presentations.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>generate_analysis_viz.py</h3>
+                <p><strong>Visualization:</strong> Create interactive HTML reports with charts, search, and color swatches - no server needed.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>validate_merge.py</h3>
+                <p><strong>Validation:</strong> Comprehensive validation of merged outputs checking slides, shapes, text, and formatting.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="demo-section">
+        <div class="container">
+            <h2 class="section-title">Project Structure</h2>
+            <p class="section-subtitle">Organized for production, validation, and experimentation</p>
+            
+            <div class="code-section">
+                <code>pptx-Slide-manager/<br>
+├── scripts/python/<br>
+│   ├── merge_pptx.py              # Production merge tool<br>
+│   ├── theme_resolver.py          # Theme color & font resolution<br>
+│   ├── analyze_pptx_fonts.py      # Font attribute analysis<br>
+│   ├── generate_analysis_viz.py   # HTML visualization generator<br>
+│   ├── generate_detailed_report.py # Text report generator<br>
+│   ├── validate_merge.py          # Output validation<br>
+│   ├── validation/                # 10 validation scripts<br>
+│   └── experimental/              # 7 experimental scripts<br>
+├── assets/<br>
+│   ├── config/                    # JSON merge configurations<br>
+│   ├── analysis/                  # Analysis reports & visualizations<br>
+│   ├── pdfs/                      # PDF templates & blocks<br>
+│   └── slides/                    # PPTX templates & blocks<br>
+└── src/<br>
+    ├── requirements.txt           # Python dependencies<br>
+    └── README.md                  # Documentation</code>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2026 PPTX Slide Manager | <a href="https://github.com/Timkey/pptx-Slide-manager">GitHub Repository</a></p>
+        <p style="margin-top: 10px; opacity: 0.8;">Built with Python, python-pptx, and Chart.js</p>
+    </footer>
+</body>
+</html>
