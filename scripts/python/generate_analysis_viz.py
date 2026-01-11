@@ -92,6 +92,7 @@ def generate_html_visualization(analysis_dir, output_file, title="PPTX Analysis"
             color: white;
             padding: 30px;
             text-align: center;
+            position: relative;
         }}
         
         h1 {{
@@ -419,6 +420,9 @@ def generate_html_visualization(analysis_dir, output_file, title="PPTX Analysis"
 <body>
     <div class="container">
         <header>
+            <a href="../../index.html" style="position: absolute; top: 20px; left: 20px; color: white; text-decoration: none; background: rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 6px; font-weight: 600; transition: background 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">
+                ← Back to Home
+            </a>
             <h1>{title}</h1>
             <p>Interactive Font Attribute Analysis & Visualization</p>
         </header>
